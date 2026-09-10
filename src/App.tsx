@@ -30,10 +30,10 @@ const services = [
 const benefits = ['Atención personalizada', 'Soporte remoto y presencial', 'Respuesta rápida', 'Soluciones adaptadas a cada empresa', 'Administración integral'];
 
 const monitoringItems = [
-  { label: 'Servidor principal', status: 'online', value: 42 },
-  { label: 'Red corporativa', status: 'online', value: 68 },
-  { label: 'Backup diario', status: 'online', value: 95 },
-  { label: 'VPN conexiones', status: 'online', value: 33 },
+  { label: 'Routers monitoreados', status: 'online', value: 42 },
+  { label: 'Conexiones VPN activas', status: 'online', value: 68 },
+  { label: 'Backups en la nube', status: 'online', value: 95 },
+  { label: 'Monitoreo de actualizaciones', status: 'online', value: 33 },
 ];
 
 function Logo({ light = false }: { light?: boolean }) {
@@ -43,7 +43,7 @@ function Logo({ light = false }: { light?: boolean }) {
       <div className="brand-copy">
         <div className="brand-name"><strong>SEEK</strong> <span>SISTEMAS</span></div>
         <div className="brand-rule" />
-        <div className="brand-subtitle">Luis Abelli <i>|</i> Servicios IT</div>
+        <div className="brand-subtitle">Servicios IT</div>
       </div>
     </div>
   );
