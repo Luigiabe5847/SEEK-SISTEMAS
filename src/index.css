@@ -22,12 +22,12 @@ a { color: inherit; text-decoration: none; }
 .brand-name strong { color: #17365c; }
 .brand-name span { color: #3ba7c0; }
 .brand-rule { height: 2px; background: #8493a2; margin: 7px 0 5px; }
-.brand-subtitle { font-size: 13px; color: #17365c; font-weight: 600; white-space: nowrap; }
+.brand-subtitle { font-size: 26px; color: #17365c; font-weight: 600; white-space: nowrap; }
 .brand-light .brand-name strong, .brand-light .brand-subtitle { color: white; }
 .brand-light .brand-name span { color: #67c0d2; }
 .brand-light .brand-rule { background: rgba(255,255,255,.45); }
 .main-nav { display: flex; align-items: center; gap: 38px; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: #17365c; }
-.main-nav a:not(.nav-cta) { opacity: .72; transition: opacity .2s; }
+.main-nav a:not(.nav-cta) { font-size: 17px; opacity: .72; transition: opacity .2s; }
 .main-nav a:not(.nav-cta):hover { opacity: 1; }
 .nav-cta { display: flex; gap: 8px; align-items: center; padding: 12px 20px; transition: background .2s, color .2s; }
 .nav-cta-wa { background: #25D366; color: white; }
@@ -155,7 +155,7 @@ h2 { font-size: clamp(38px, 4.7vw, 60px); line-height: 1.1; letter-spacing: -.06
   .brand-mark-image { width: 58px; height: 58px; }
   .brand-name { font-size: 35px; letter-spacing: -1.9px; }
   .brand-copy { min-width: 0; }
-  .brand-subtitle { font-size: 11px; }
+  .brand-subtitle { font-size: 22px; }
   .menu-toggle { display: block; z-index: 2; }
   .main-nav { display: none; position: absolute; top: 92px; left: 20px; right: 20px; padding: 22px; flex-direction: column; align-items: stretch; gap: 20px; background: white; box-shadow: 0 15px 25px rgba(0,0,0,.18); border: 1px solid #dde5ea; }
   .main-nav.is-open { display: flex; }
