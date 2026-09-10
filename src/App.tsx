@@ -12,7 +12,7 @@ import {
   ShieldCheck,
   X,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const WHATSAPP_URL = 'https://wa.me/541155795847';
 
@@ -58,6 +58,21 @@ function WhatsAppIcon({ size = 24 }: { size?: number }) {
 }
 
 function TechVisual() {
+  const [items, setItems] = useState(monitoringItems);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setItems((prev) =>
+        prev.map((item) => {
+          const delta = Math.round((Math.random() - 0.5) * 18);
+          const value = Math.max(14, Math.min(97, item.value + delta));
+          return { ...item, value };
+        })
+      );
+    }, 3200);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="tech-visual">
       <div className="tech-window">
@@ -72,7 +87,7 @@ function TechVisual() {
             <span className="tech-status-label">ESTADO DEL SISTEMA</span>
             <span className="tech-status-badge">OPERATIVO</span>
           </div>
-          {monitoringItems.map((item) => (
+          {items.map((item) => (
             <div className="tech-monitor-row" key={item.label}>
               <span className="tech-monitor-dot" />
               <span className="tech-monitor-name">{item.label}</span>
@@ -97,8 +112,34 @@ function TechVisual() {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
 
   const closeMenu = () => setMenuOpen(false);
+
+  const handleHeroMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const el = heroRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty('--mx', `${((e.clientX - rect.left) / rect.width) * 100}%`);
+    el.style.setProperty('--my', `${((e.clientY - rect.top) / rect.height) * 100}%`);
+  };
+
+  useEffect(() => {
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div className="site-shell">
@@ -119,8 +160,12 @@ function App() {
       </header>
 
       <main>
-        <section className="hero" id="inicio">
+        <section className="hero" id="inicio" ref={heroRef} onMouseMove={handleHeroMouseMove}>
           <div className="hero-grid" />
+          <div className="hero-glow" />
+          <div className="hero-signals">
+            {Array.from({ length: 6 }).map((_, i) => <span className={`hero-signal hero-signal-${i + 1}`} key={i} />)}
+          </div>
           <div className="container hero-content">
             <div className="hero-text">
               <p className="eyebrow"><span className="eyebrow-line" /> SERVICIOS IT PARA PYMES</p>
@@ -137,33 +182,33 @@ function App() {
 
         <section className="intro-section">
           <div className="container intro-grid">
-            <div><p className="eyebrow dark"><span className="eyebrow-line" /> QUÉ HAGO</p><h2><span className="accent-text">Soluciones claras para</span> problemas reales.</h2></div>
-            <div className="intro-copy"><p className="intro-lead">TECNOLOGÍA QUE FUNCIONA - SOPORTE QUE ACOMPAÑA.</p><p>Trabajo con empresas y oficinas para resolver problemas, mantener sus sistemas funcionando y hacer que la tecnología sea una herramienta, no un problema.</p></div>
+            <div className="reveal"><p className="eyebrow dark"><span className="eyebrow-line" /> QUÉ HAGO</p><h2><span className="accent-text">Soluciones claras para</span> problemas reales.</h2></div>
+            <div className="intro-copy reveal" style={{ transitionDelay: '120ms' }}><p className="intro-lead">TECNOLOGÍA QUE FUNCIONA - SOPORTE QUE ACOMPAÑA.</p><p>Trabajo con empresas y oficinas para resolver problemas, mantener sus sistemas funcionando y hacer que la tecnología sea una herramienta, no un problema.</p></div>
           </div>
         </section>
 
         <section className="services-section" id="servicios">
           <div className="container">
-            <div className="section-heading"><div><p className="eyebrow dark"><span className="eyebrow-line" /> SERVICIOS</p><h2>Lo que puedo resolver<br /><span>por tu empresa.</span></h2></div><p className="heading-note"><span className="heading-note-lead">EXPERIENCIA TÉCNICA - COMUNICACIÓN CERCANA</span><br />Soluciones que se adaptan a tu forma de trabajar.</p></div>
-            <div className="services-grid">{services.map(({ icon: Icon, title, text }, index) => <article className="service-card" key={title}><span className="service-number">0{index + 1}</span><Icon className="service-icon" size={30} strokeWidth={1.5} /><h3>{title}</h3><p>{text}</p></article>)}</div>
+            <div className="section-heading reveal"><div><p className="eyebrow dark"><span className="eyebrow-line" /> SERVICIOS</p><h2>Lo que puedo resolver<br /><span>por tu empresa.</span></h2></div><p className="heading-note"><span className="heading-note-lead">EXPERIENCIA TÉCNICA - COMUNICACIÓN CERCANA</span><br />Soluciones que se adaptan a tu forma de trabajar.</p></div>
+            <div className="services-grid">{services.map(({ icon: Icon, title, text }, index) => <article className="service-card reveal" style={{ transitionDelay: `${(index % 4) * 80}ms` }} key={title}><span className="service-number">0{index + 1}</span><Icon className="service-icon" size={30} strokeWidth={1.5} /><h3>{title}</h3><p>{text}</p></article>)}</div>
           </div>
         </section>
 
         <section className="why-section" id="por-que">
           <div className="container why-grid">
-            <div className="why-statement"><p className="eyebrow light"><span className="eyebrow-line" /> POR QUÉ SEEK</p><h2>Un único punto de contacto para tu <em>infraestructura IT.</em></h2></div>
-            <div className="why-detail"><p>Cuando llamás a Seek Sistemas hablás directo con quien va a resolver el problema. Al trabajar de forma independiente y directa, conocés exactamente quién gestiona la infraestructura de tu empresa. Sin mesas de ayuda que derivan tickets impersonales, sin demoras de call center y sin pagar estructuras corporativas innecesarias.</p><ul>{benefits.map((benefit) => <li key={benefit}><BadgeCheck size={20} />{benefit}</li>)}</ul></div>
+            <div className="why-statement reveal"><p className="eyebrow light"><span className="eyebrow-line" /> POR QUÉ SEEK</p><h2>Un único punto de contacto para tu <em>infraestructura IT.</em></h2></div>
+            <div className="why-detail reveal" style={{ transitionDelay: '120ms' }}><p>Cuando llamás a Seek Sistemas hablás directo con quien va a resolver el problema. Al trabajar de forma independiente y directa, conocés exactamente quién gestiona la infraestructura de tu empresa. Sin mesas de ayuda que derivan tickets impersonales, sin demoras de call center y sin pagar estructuras corporativas innecesarias.</p><ul>{benefits.map((benefit) => <li key={benefit}><BadgeCheck size={20} />{benefit}</li>)}</ul></div>
           </div>
         </section>
 
         <section className="working-section">
-          <div className="container working-grid"><div><p className="eyebrow dark"><span className="eyebrow-line" /> CÓMO TRABAJAMOS</p><h2>Un servicio a tu medida.</h2></div><div className="working-options"><div><span>01</span><h3>Abonos mensuales</h3><p>Soporte continuo para tu empresa.</p></div><div><span>02</span><h3>Trabajos a convenir</h3><p>Soluciones puntuales, cuando las necesitás.</p></div></div></div>
+          <div className="container working-grid"><div className="reveal"><p className="eyebrow dark"><span className="eyebrow-line" /> CÓMO TRABAJAMOS</p><h2>Un servicio a tu medida.</h2></div><div className="working-options reveal" style={{ transitionDelay: '120ms' }}><div><span>01</span><h3>Abonos mensuales</h3><p>Soporte continuo para tu empresa.</p></div><div><span>02</span><h3>Trabajos a convenir</h3><p>Soluciones puntuales, cuando las necesitás.</p></div></div></div>
         </section>
 
         <section className="contact-section" id="contacto">
           <div className="container contact-inner">
-            <div><p className="eyebrow light"><span className="eyebrow-line" /> CONTACTO</p><h2>¿Hablamos de lo que<br /><em>necesitás?</em></h2></div>
-            <div className="contact-action">
+            <div className="reveal"><p className="eyebrow light"><span className="eyebrow-line" /> CONTACTO</p><h2>¿Hablamos de lo que<br /><em>necesitás?</em></h2></div>
+            <div className="contact-action reveal" style={{ transitionDelay: '120ms' }}>
               <p>Contame qué necesitás resolver y vemos juntos la mejor forma de encararlo.</p>
               <div className="contact-links">
                 <a className="contact-link-item" href={WHATSAPP_URL} target="_blank" rel="noreferrer">
