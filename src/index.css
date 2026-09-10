@@ -98,11 +98,13 @@ h1 em, h2 em { color: #55b6c8; font-style: normal; }
 h2 { font-size: clamp(38px, 4.7vw, 60px); line-height: 1.1; letter-spacing: -.065em; margin-bottom: 0; }
 .intro-copy { max-width: 500px; padding-top: 39px; border-top: 1px solid #cbd5db; color: #53677b; font-size: 17px; line-height: 1.9; text-align: justify; }
 .intro-copy p + p { margin-top: 21px; }
+.intro-lead { font-weight: 700; text-transform: uppercase; }
 .services-section { background: white; }
 .section-heading { display: flex; justify-content: space-between; gap: 40px; align-items: end; margin-bottom: 60px; }
 .section-heading h2 span, .intro-grid h2 span { color: #3ba7c0; }
 .intro-grid h2 .accent-text { color: #3ba7c0; }
 .heading-note { color: #708292; font-size: 15px; line-height: 1.8; text-align: right; margin-bottom: 4px; }
+.heading-note-lead { font-weight: 700; text-transform: uppercase; }
 .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #d9e1e5; border-left: 1px solid #d9e1e5; }
 .service-card { position: relative; min-height: 230px; padding: 28px 24px; border-right: 1px solid #d9e1e5; border-bottom: 1px solid #d9e1e5; transition: background .25s, transform .25s; }
 .service-card:hover { background: #f0f8fa; transform: translateY(-4px); }

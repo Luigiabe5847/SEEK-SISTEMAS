@@ -138,13 +138,13 @@ function App() {
         <section className="intro-section">
           <div className="container intro-grid">
             <div><p className="eyebrow dark"><span className="eyebrow-line" /> QUÉ HAGO</p><h2><span className="accent-text">Soluciones claras para</span> problemas reales.</h2></div>
-            <div className="intro-copy"><p>Tecnología que funciona. Soporte que acompaña.</p><p>Trabajo con empresas y oficinas para resolver problemas, mantener sus sistemas funcionando y hacer que la tecnología sea una herramienta, no un problema.</p></div>
+            <div className="intro-copy"><p className="intro-lead">TECNOLOGÍA QUE FUNCIONA - SOPORTE QUE ACOMPAÑA.</p><p>Trabajo con empresas y oficinas para resolver problemas, mantener sus sistemas funcionando y hacer que la tecnología sea una herramienta, no un problema.</p></div>
           </div>
         </section>
 
         <section className="services-section" id="servicios">
           <div className="container">
-            <div className="section-heading"><div><p className="eyebrow dark"><span className="eyebrow-line" /> SERVICIOS</p><h2>Lo que puedo resolver<br /><span>por tu empresa.</span></h2></div><p className="heading-note">Experiencia técnica, comunicación cercana<br />y soluciones que se adaptan a tu forma de trabajar.</p></div>
+            <div className="section-heading"><div><p className="eyebrow dark"><span className="eyebrow-line" /> SERVICIOS</p><h2>Lo que puedo resolver<br /><span>por tu empresa.</span></h2></div><p className="heading-note"><span className="heading-note-lead">EXPERIENCIA TÉCNICA - COMUNICACIÓN CERCANA</span><br />Soluciones que se adaptan a tu forma de trabajar.</p></div>
             <div className="services-grid">{services.map(({ icon: Icon, title, text }, index) => <article className="service-card" key={title}><span className="service-number">0{index + 1}</span><Icon className="service-icon" size={30} strokeWidth={1.5} /><h3>{title}</h3><p>{text}</p></article>)}</div>
           </div>
         </section>
