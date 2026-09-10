@@ -39,7 +39,7 @@ const monitoringItems = [
 function Logo({ light = false }: { light?: boolean }) {
   return (
     <div className={`brand ${light ? 'brand-light' : ''}`} aria-label="Seek Sistemas">
-      <img className="brand-mark-image" src="/Logo_Final.png" alt="" />
+      <img className="brand-mark-image" src={light ? "/Logo_Oscuro.png" : "/Logo_Claro.png"} alt="" />
       <div className="brand-copy">
         <div className="brand-name"><strong>SEEK</strong> <span>SISTEMAS</span></div>
         <div className="brand-rule" />
