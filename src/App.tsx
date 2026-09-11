@@ -91,12 +91,12 @@ function TechVisual() {
     const interval = setInterval(() => {
       setItems((prev) =>
         prev.map((item) => {
-          const delta = Math.round((Math.random() - 0.5) * 18);
-          const value = Math.max(14, Math.min(97, item.value + delta));
+          const delta = Math.round((Math.random() - 0.5) * 40);
+          const value = Math.max(10, Math.min(98, item.value + delta));
           return { ...item, value };
         })
       );
-    }, 3200);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
